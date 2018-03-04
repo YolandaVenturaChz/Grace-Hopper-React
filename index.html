@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>React: Getting Started</title>
+  <!-- <script src="https://unpkg.com/react@15/dist/react.js"></script>
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script> -->
+  <link rel="stylesheet" href="main.css">
+  <script src="./vendors/js/react.js"></script>
+  <script src="./vendors/js/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+</head>
+
+<body>
+  <div id="header"></div>
+  <div id="section"></div>
+  <div id="aside"></div>
+
+  <script type="text/babel">
+  
+    (() => {
+      const Header = ({ titulo }) => (
+        <header>
+          <h1>{titulo}</h1>
+          <hr />
+        </header>
+      );
+      const headerProps = {
+        titulo: 'Grace Hopper',
+      };
+      ReactDOM.render(
+        <Header  {...headerProps} />,
+        document.getElementById('header')
+      );
+    })();
+
+    
+
+(() => {
+  const Article1 = ({ titulo, parrafo }) => (
+    <article>
+      <div>
+      <p><strong>Grace Brewster Murray Hopper</strong> (<a href="https://en.wikipedia.org/wiki/Given_name#Name_at_birth" 
+        target="_blank">née</a><strong> Murray</strong>; December 9, 1906 – January 1, 1992) was an American <a href="https://en.wikipedia.org/wiki/Computer_scientist" target="_blank">computer scientist</a>
+        and <a href="https://en.wikipedia.org/wiki/United_States_Navy" target="_blank">United States</a>
+        <a href="https://en.wikipedia.org/wiki/United_States_Navy" target="_blank">Navy</a><a href="https://en.wikipedia.org/wiki/Rear_admiral" >rear admiral.[1]</a>
+        <mark>One of the first programmers of the <a href="https://en.wikipedia.org/wiki/Harvard_Mark_I">Harvard Mark I</a> computer,</mark>
+        she was a pioneer of computer programming who invented one of the first compiler related tools. She popularized the idea of machine-independent
+        programming languages, which led to the development of COBOL, an early high-level programming language still in use today.</p>
+      <p>Hopper had attempted to enlist in the Navy during <a href="https://en.wikipedia.org/wiki/World_War_II" target="_blank">World War II</a>,
+        but she was rejected by the military because she was 34 years of age and too old to enlist. She instead joined the Navy Reserves. Hopper 
+        began her computing career when she worked on the Harvard Mark I team that was led by <a href="https://en.wikipedia.org/wiki/Howard_H._Aiken" 
+        target="_blank">Howard H. Aiken.</a> In 1949, she joined the <a href="https://en.wikipedia.org/wiki/Eckert%E2%80%93Mauchly_Computer_Corporation" 
+        target="_blank">Eckert–Mauchly Computer Corporation</a> and was part of the development team that designed the <a href="https://en.wikipedia.org/wiki/UNIVAC_I" 
+        target="_blank">UNIVAC I</a> computer in 1944. It was at Eckert–Mauchly that she began developing the compiler. She believed that computer code could be written
+        in English by using a programming language that was based on English words. The compiler would convert that code into <a href="https://en.wikipedia.org/wiki/Machine_code">machine code</a>
+        that would be understood by computers. By 1952, Hopper finished her compiler, which was written for the <a href="https://en.wikipedia.org/wiki/A-0_System">A-0 System</a> programming language.[2][3][4][5]</p>
+      <p>In 1954, Eckert–Mauchly chose Hopper to lead their department for automatic programming, and she led the release of some of the first compiled languages like <a href="https://en.wikipedia.org/wiki/FLOW-MATIC"
+        target="_blank">FLOW-MATIC.</a> In 1959, she participated in the <a href="https://en.wikipedia.org/wiki/CODASYL" target="_blank">CODASYL</a> consortium, which consulted Hopper to guide them in creating a 
+        machine-independent programming language. This led to the <a href="https://en.wikipedia.org/wiki/COBOL" target="_blank">COBOL</a> language, which was inspired by her idea of a language being based on English 
+        words. In 1966, she retired from the Naval Reserve, but in 1967, the Navy recalled her to active duty. She retired from the Navy in 1986 and found work as a consultant for the 
+        <a href="https://en.wikipedia.org/wiki/Digital_Equipment_Corporation" target="_blank">Digital Equipment Corporation</a>, sharing her computing experiences.</p>  
+      </div>
+      <div>
+        <h3>Career</h3>
+        <ol>
+          <li>World War II</li>
+          <li>UNIVAC</li>
+          <li>COBOL</li>
+          <li>Standards</li>
+        </ol>
+      </div>
+      <div>
+        <h2>Phrase</h2>
+        <blockquote cite="http://www.azquotes.com/quote/553883">
+        Humans are allergic to change. They love to say, 'We've always done it this way.' I try to fight that. That's why I have a clock on my wall that runs counter-clockwise.
+        </blockquote>
+         <a href="information.html" target="_blank">See more</a>      
+        </div>
+    </article>
+  );
+    const Section = ({ title, articles }) => {
+      const options = {
+        style: {
+          width: '72%',
+          float: 'left'
+        },
+        id: 'main'
+      };
+  
+      const listArticles = articles.map((element, index) => {
+        const article1Props = {
+          key: index.toString(),
+          parrafo: element.parrafo,
+          titulo: element.titulo,
+        };
+        return <Article1  {...article1Props} />
+      });
+  
+      return (
+        <section {...options}>
+          {listArticles}
+        </section>
+      );
+    };
+  
+    const obj = {
+     
+      articles: [
+        {
+          titulo: 'Titulo 1',
+          parrafo: 'Descripcion 1'
+        },
+      ]
+    };
+  
+    ReactDOM.render(
+      <Section {...obj} />,
+      document.getElementById('section')
+    );
+  })();
+  
+  (() => {
+      const Aside = ({ links, title,title1 }) => {
+        const options = {
+          style: {
+            width: '25%',
+            float: 'right',
+            border: '1px solid black'
+          }
+        };
+    
+        const listLinks = links.map((element, index) => (
+          
+          <li key={index}>
+            <p>{element}</p>
+            
+          </li>)
+        );
+    
+        return (
+          <aside {...options}>
+          <div id="text">
+            <h3>{title}</h3>
+            <img style={{height:'12em', padding:'2px'}}src="https://upload.wikimedia.org/wikipedia/commons/5/55/Grace_Hopper.jpg"/>
+            <h4>{title1}</h4>
+          </div>
+          <hr />
+          <div id="text1">
+        
+            <ul>
+              {listLinks}
+              
+            </ul>
+          </div>
+          </aside>);
+      };
+    
+      const obj = {
+        title: 'Grace Murray Hopper',
+        title1:'Rear Admiral Grace M. Hopper, 1984',
+        links: [
+        'Nickname(s)	Amazing Grace',
+        'Born	December 9, 1906',
+        'Died	January 1, 1992 (aged 85)',
+        'Allegiance	 EEUUUnited States of America',
+        'Service/branch',' Navy EEUU FlagUnited States Navy',
+        'Years of service	1943–1966, 1967–1971, 1972–1986',
+        'Rank	Rear admiral (lower half)']
+      };
+    
+      ReactDOM.render(
+        <Aside {...obj} />,
+        document.getElementById('aside')
+      );
+    })();
+  </script>
+</body>
+
+</html>
